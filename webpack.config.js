@@ -23,6 +23,11 @@ module.exports = {
                 exclude: /node_modules/
             },
             {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: ['babel-loader','eslint-loader']
+            },
+            {
               test: /\.scss$/,
               use: extractTextPlugin.extract({
                 use: ['css-loader', 'sass-loader']

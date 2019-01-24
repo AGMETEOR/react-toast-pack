@@ -1,7 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
 import Notify from '../../src';
+
 const App = () => (
-    <Notify />
+  <Notify />
 );
-render(<App />, document.getElementById("root"));
+render(<App />, document.getElementById('root'));
