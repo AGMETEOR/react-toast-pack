@@ -1,7 +1,8 @@
 import React from 'react';
+import '../scss/main.scss';
 
 const notify = () => {
-    return (<div>I am a toast component</div>);
+    return (<div className="not">I am a toast componen</div>);
 };
 
 export default notify;
