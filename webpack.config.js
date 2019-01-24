@@ -4,6 +4,11 @@ const htmlWebpackPlugin = new HtmlWebpackPlugin({
     template: path.join(__dirname, "examples/src/index.html"),
     filename: "./index.html"
 });
+
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const extractTextPlugin = new ExtractTextPlugin({
+  filename: 'main.css'
+});
 module.exports = {
     entry: path.join(__dirname, "examples/src/index.js"),
     output: {
@@ -18,12 +23,14 @@ module.exports = {
                 exclude: /node_modules/
             },
             {
-                test: /\.css$/,
-                use: ["style-loader", "css-loader"]
+              test: /\.scss$/,
+              use: extractTextPlugin.extract({
+                use: ['css-loader', 'sass-loader']
+              })
             }
         ]
     },
-    plugins: [htmlWebpackPlugin],
+    plugins: [htmlWebpackPlugin, extractTextPlugin],
     resolve: {
         extensions: [".js", ".jsx"]
     },
