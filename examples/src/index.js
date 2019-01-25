@@ -1,8 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
-import Notify from '../../src';
+import ToastElement from '../../src';
 
 const App = () => (
-  <Notify />
+  <ToastElement />
 );
 render(<App />, document.getElementById('root'));
