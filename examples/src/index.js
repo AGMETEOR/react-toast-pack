@@ -3,6 +3,6 @@ import { render } from 'react-dom';
 import ToastElement from '../../src';
 
 const App = () => (
-  <ToastElement />
+  <ToastElement type="info" />
 );
 render(<App />, document.getElementById('root'));

@@ -9,6 +9,7 @@ $primarySuccessColor: green;
     transition: all 0.5s ease-out;
     width: 20%;
     padding: 10px;
+    margin-bottom: 0.8rem;
 }
 
 .Toast{
@@ -20,15 +21,17 @@ $primarySuccessColor: green;
     &-info {
         @include defaultToastElement();
         background-color: $primaryInfoColor;
+        color: white
     }
 
     &-success {
         @include defaultToastElement();
         background-color: $primarySuccessColor;
+        color: white;
     }
 }
 
 .hide {
-    transition: all 0.5s ease-out;
+    transition: all 0.4s ease-out;
     transform: translateX(-100vw);
 }
