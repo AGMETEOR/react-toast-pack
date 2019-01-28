@@ -1,0 +1,34 @@
+$primaryInfoColor: blue;
+$primarySuccessColor: green;
+
+
+@mixin defaultToastElement {
+    z-index: 1000;
+    background-color: white;
+    box-shadow: 3px 4px 14px 0px rgba(0,0,0,0.28);
+    transition: all 0.5s ease-out;
+    width: 20%;
+    padding: 10px;
+}
+
+.Toast{
+
+    &-Element{
+        @include defaultToastElement();
+    }
+
+    &-info {
+        @include defaultToastElement();
+        background-color: $primaryInfoColor;
+    }
+
+    &-success {
+        @include defaultToastElement();
+        background-color: $primarySuccessColor;
+    }
+}
+
+.hide {
+    transition: all 0.5s ease-out;
+    transform: translateX(-100vw);
+}
