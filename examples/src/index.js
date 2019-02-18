@@ -1,8 +1,21 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { render } from 'react-dom';
-import ToastElement from '../../src';
+import { ToastPack, toast } from '../../src';
 
-const App = () => (
-  <ToastElement type="info" />
-);
+
+class App extends Component {
+  componentDidMount() {
+    toast('info', 'This is information');
+    toast('success', 'This is success information');
+  }
+
+  render() {
+    return (
+      <div>
+        <ToastPack />
+      </div>
+    );
+  }
+}
+
 render(<App />, document.getElementById('root'));

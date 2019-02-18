@@ -1,3 +1,9 @@
-import ToastStack from './containers/ToastStack';
+import ToastPack from './containers/ToastPack';
+import ToastFactory from './utils/ToastFactory';
 
-export default ToastStack;
+const toast = (type, message) => ToastFactory.notify(type, message);
+
+export {
+  ToastPack,
+  toast,
+};
