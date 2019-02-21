@@ -1,26 +1,46 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import CloseToast from '../components/CloseToast';
+import toastFactory from '../utils/ToastFactory';
 import '../../scss/main.scss';
 
 class ToastElement extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      autoClose: true,
       hide: false,
     };
   }
 
   componentDidMount() {
-    setTimeout(() => this.autoClose(), 4000);
+    setTimeout(() => this.autoClose(), 6000);
+  }
+
+  voluntaryClose = () => {
+    this.setState({
+      autoClose: false,
+    });
+    const { id } = this.props;
+    this.slideAway();
+    this.myPromise()
+      .then(() => {
+        toastFactory.deleteNotification(id);
+      });
   }
 
   autoClose = () => {
-    this.slideAway();
-    const { remove, context } = this.props;
-    this.myPromise()
-      .then(() => {
-        remove(context);
-      });
+    const { autoClose } = this.state;
+    if (autoClose) {
+      this.slideAway();
+      const { id } = this.props;
+      this.myPromise()
+        .then(() => {
+          if (autoClose) {
+            toastFactory.deleteNotification(id);
+          }
+        });
+    }
   }
 
   slideAway = () => {
@@ -39,13 +59,14 @@ class ToastElement extends Component {
   }
 
   render() {
-    const { type } = this.props;
+    const { type, children } = this.props;
     const { hide } = this.state;
     return (
       <div>
         <div className={`Toast-${type || 'Element'} ${hide && 'hide'}`}>
           <div>
-      I am a toast notification
+            {children}
+            <CloseToast clickFunction={this.voluntaryClose} />
           </div>
         </div>
       </div>
@@ -54,9 +75,9 @@ class ToastElement extends Component {
 }
 
 ToastElement.propTypes = {
-  remove: PropTypes.func.isRequired,
-  context: PropTypes.object.isRequired,
   type: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export default ToastElement;
