@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const closeToast = props => {
   const { clickFunction } = props;
   return (
-    <button onClick={clickFunction}>x</button>
+    <button className="Close" onClick={clickFunction}>x</button>
   );
 };
 

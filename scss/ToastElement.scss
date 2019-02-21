@@ -1,18 +1,22 @@
-$primaryInfoColor: blue;
-$primarySuccessColor: green;
+$primaryInfoColor: #3E8FAB;
+$primarySuccessColor: #7CAE76;
+$darkColor: #424242;
 
 
 @mixin defaultToastElement {
-    z-index: 1000;
-    background-color: white;
-    box-shadow: 3px 4px 14px 0px rgba(0,0,0,0.28);
+    background-color: #E7A64D;
+    color: white;
+    min-height: 50px;
+    height: auto;
+    box-shadow: 3px 4px 14px 0px rgba(0,0,0,0.18);
     transition: all 0.5s ease-out;
-    width: 20%;
+    width: 100%;
     padding: 10px;
     margin-bottom: 0.8rem;
+    position: relative;
 }
 
-.Toast{
+.ToastElement{
 
     &-Element{
         @include defaultToastElement();
@@ -21,14 +25,18 @@ $primarySuccessColor: green;
     &-info {
         @include defaultToastElement();
         background-color: $primaryInfoColor;
-        box-shadow: 3px 4px 14px 0px rgba(0, 0, 255, 0.28);
         color: white
     }
 
     &-success {
         @include defaultToastElement();
         background-color: $primarySuccessColor;
-        box-shadow: 3px 4px 14px 0px rgba(0, 128, 0, 0.28);
+        color: white;
+    }
+
+    &-dark {
+        @include defaultToastElement();
+        background-color: $darkColor;
         color: white;
     }
 }
