@@ -1,7 +1,18 @@
-.ToastPack {
+@mixin defaultToastPack {
     position: absolute;
-    width: 20%;
+    min-width: 20%;
     z-index: 999;
-    left: 10px;
     top: 10px;
+}
+.ToastPack {
+
+    &-lt {
+        @include defaultToastPack();
+        left: 10px; 
+    }
+
+    &-rt {
+        @include defaultToastPack();
+        right: 40px;
+    }
 }

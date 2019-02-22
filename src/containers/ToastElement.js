@@ -2,19 +2,27 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import CloseToast from '../components/CloseToast';
 import toastFactory from '../utils/ToastFactory';
+import { AlignedRightContext } from './ToastPack';
 import '../../scss/main.scss';
 
 class ToastElement extends Component {
+  static contextType = AlignedRightContext;
+
   constructor(props) {
     super(props);
+    const { configuration } = props;
+    const { autoCloseTiming, autoClose, styling } = configuration;
+    this.autoCloseTiming = autoCloseTiming;
+    this.styling = styling;
     this.state = {
-      autoClose: true,
-      hide: false,
+      autoClose,
+      show: false,
     };
   }
 
   componentDidMount() {
-    setTimeout(() => this.autoClose(), 6000);
+    setTimeout(() => this.slideIn(), 0);
+    setTimeout(() => this.autoClose(), this.autoCloseTiming);
   }
 
   voluntaryClose = () => {
@@ -43,9 +51,15 @@ class ToastElement extends Component {
     }
   }
 
+  slideIn = () => {
+    return this.setState({
+      show: true,
+    });
+  }
+
   slideAway = () => {
     return this.setState({
-      hide: true,
+      show: false,
     });
   }
 
@@ -58,16 +72,21 @@ class ToastElement extends Component {
     return promise;
   }
 
+
   render() {
     const { type, children } = this.props;
-    const { hide } = this.state;
+    const { show } = this.state;
     return (
-      <div className={`ToastElement-${type || 'Element'} ${hide && 'hide'}`}>
-        <div>
-          {children}
-          <CloseToast clickFunction={this.voluntaryClose} />
-        </div>
-      </div>
+      <AlignedRightContext.Consumer>
+        {(context) => (
+          <div className={`${context ? 'ToastElementRight' : 'ToastElement'}-${type || 'Element'} ${show && 'slideIn'}`} style={this.styling}>
+            <div>
+              {children}
+            </div>
+            <CloseToast clickFunction={this.voluntaryClose} />
+          </div>
+        )}
+      </AlignedRightContext.Consumer>
     );
   }
 }
@@ -76,10 +95,12 @@ ToastElement.propTypes = {
   type: PropTypes.string,
   id: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
+  configuration: PropTypes.object,
 };
 
 ToastElement.defaultProps = {
   type: null,
+  configuration: {},
 };
 
 export default ToastElement;

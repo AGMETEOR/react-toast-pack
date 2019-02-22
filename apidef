@@ -1,0 +1,7 @@
+Should be able to change the toast disappearing timing for individual toasts \/
+Should be able to turn on and off auto close for individual toasts \/
+Should be able to pass an element into the toast itself, this allows for users to define what type of content a toast should have
+Should be able to style a toast even when you want a simple toast... I should be able to pass in a class object... \/
+Toast should slide in...\/
+Toast Container should be able to move to the left or right and the toasts should change direction \/
+Toast should not close if someone hovers over it

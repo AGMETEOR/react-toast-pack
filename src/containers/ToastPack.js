@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import toastFactory from '../utils/ToastFactory';
 import { ontoast, onremovetoast } from '../utils/types';
+
+export const AlignedRightContext = React.createContext(false);
 
 class ToastPack extends Component {
   componentDidMount() {
@@ -13,14 +16,26 @@ class ToastPack extends Component {
   }
 
   render() {
+    const { rt } = this.props;
     return (
-      <div className="ToastPack">
-        {
+      <AlignedRightContext.Provider value={rt}>
+        <div className={rt ? 'ToastPack-rt' : 'ToastPack-lt'}>
+          {
           [...toastFactory.toastMap.entries()].map(el => el[1].element)
         }
-      </div>
+        </div>
+
+      </AlignedRightContext.Provider>
     );
   }
 }
+
+ToastPack.propTypes = {
+  rt: PropTypes.bool,
+};
+
+ToastPack.defaultProps = {
+  rt: false,
+};
 
 export default ToastPack;
