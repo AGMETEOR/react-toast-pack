@@ -62,12 +62,10 @@ class ToastElement extends Component {
     const { type, children } = this.props;
     const { hide } = this.state;
     return (
-      <div>
-        <div className={`Toast-${type || 'Element'} ${hide && 'hide'}`}>
-          <div>
-            {children}
-            <CloseToast clickFunction={this.voluntaryClose} />
-          </div>
+      <div className={`ToastElement-${type || 'Element'} ${hide && 'hide'}`}>
+        <div>
+          {children}
+          <CloseToast clickFunction={this.voluntaryClose} />
         </div>
       </div>
     );
@@ -75,9 +73,13 @@ class ToastElement extends Component {
 }
 
 ToastElement.propTypes = {
-  type: PropTypes.string.isRequired,
+  type: PropTypes.string,
   id: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
+};
+
+ToastElement.defaultProps = {
+  type: null,
 };
 
 export default ToastElement;

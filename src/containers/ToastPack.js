@@ -14,7 +14,7 @@ class ToastPack extends Component {
 
   render() {
     return (
-      <div>
+      <div className="ToastPack">
         {
           [...toastFactory.toastMap.entries()].map(el => el[1].element)
         }
