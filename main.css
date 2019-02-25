@@ -1,0 +1,148 @@
+.ToastPack-lt {
+  position: absolute;
+  min-width: 20%;
+  z-index: 999;
+  top: 10px;
+  left: 10px; }
+
+.ToastPack-rt {
+  position: absolute;
+  min-width: 20%;
+  z-index: 999;
+  top: 10px;
+  right: 40px; }
+
+.ToastElement-Element {
+  background-color: #E7A64D;
+  color: white;
+  min-height: 50px;
+  height: auto;
+  box-shadow: 3px 4px 14px 0px rgba(0, 0, 0, 0.18);
+  transform: translateX(-100vw);
+  transition: all 0.7s ease-out;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 0.8rem;
+  position: relative; }
+
+.ToastElement-info {
+  background-color: #E7A64D;
+  color: white;
+  min-height: 50px;
+  height: auto;
+  box-shadow: 3px 4px 14px 0px rgba(0, 0, 0, 0.18);
+  transform: translateX(-100vw);
+  transition: all 0.7s ease-out;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 0.8rem;
+  position: relative;
+  background-color: #3E8FAB;
+  color: white; }
+
+.ToastElement-success {
+  background-color: #E7A64D;
+  color: white;
+  min-height: 50px;
+  height: auto;
+  box-shadow: 3px 4px 14px 0px rgba(0, 0, 0, 0.18);
+  transform: translateX(-100vw);
+  transition: all 0.7s ease-out;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 0.8rem;
+  position: relative;
+  background-color: #7CAE76;
+  color: white; }
+
+.ToastElement-dark {
+  background-color: #E7A64D;
+  color: white;
+  min-height: 50px;
+  height: auto;
+  box-shadow: 3px 4px 14px 0px rgba(0, 0, 0, 0.18);
+  transform: translateX(-100vw);
+  transition: all 0.7s ease-out;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 0.8rem;
+  position: relative;
+  background-color: #424242;
+  color: white; }
+
+.ToastElementRight-Element {
+  background-color: #E7A64D;
+  color: white;
+  min-height: 50px;
+  height: auto;
+  box-shadow: 3px 4px 14px 0px rgba(0, 0, 0, 0.18);
+  transform: translateX(-100vw);
+  transition: all 0.7s ease-out;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 0.8rem;
+  position: relative;
+  transform: translateX(100vw); }
+
+.ToastElementRight-info {
+  background-color: #E7A64D;
+  color: white;
+  min-height: 50px;
+  height: auto;
+  box-shadow: 3px 4px 14px 0px rgba(0, 0, 0, 0.18);
+  transform: translateX(-100vw);
+  transition: all 0.7s ease-out;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 0.8rem;
+  position: relative;
+  transform: translateX(100vw);
+  background-color: #3E8FAB;
+  color: white; }
+
+.ToastElementRight-success {
+  background-color: #E7A64D;
+  color: white;
+  min-height: 50px;
+  height: auto;
+  box-shadow: 3px 4px 14px 0px rgba(0, 0, 0, 0.18);
+  transform: translateX(-100vw);
+  transition: all 0.7s ease-out;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 0.8rem;
+  position: relative;
+  transform: translateX(100vw);
+  background-color: #7CAE76;
+  color: white; }
+
+.ToastElementRight-dark {
+  background-color: #E7A64D;
+  color: white;
+  min-height: 50px;
+  height: auto;
+  box-shadow: 3px 4px 14px 0px rgba(0, 0, 0, 0.18);
+  transform: translateX(-100vw);
+  transition: all 0.7s ease-out;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 0.8rem;
+  position: relative;
+  transform: translateX(100vw);
+  background-color: #424242;
+  color: white; }
+
+.slideIn {
+  transition: all 0.7s ease-out;
+  transform: translateX(0vw); }
+
+.Close {
+  position: absolute;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 15px;
+  color: inherit;
+  top: 2px;
+  right: 2px; }
