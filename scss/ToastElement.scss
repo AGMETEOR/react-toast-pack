@@ -9,12 +9,19 @@ $darkColor: #424242;
     min-height: 50px;
     height: auto;
     box-shadow: 3px 4px 14px 0px rgba(0,0,0,0.18);
-    transition: all 0.5s ease-out;
+    transform: translateX(-100vw);
+    transition: all 0.7s ease-out;
     width: 100%;
     padding: 10px;
     margin-bottom: 0.8rem;
     position: relative;
 }
+
+@mixin  defaultToastElementRight {
+    @include defaultToastElement();
+    transform: translateX(100vw);  
+}
+// default left
 
 .ToastElement{
 
@@ -41,7 +48,34 @@ $darkColor: #424242;
     }
 }
 
-.hide {
-    transition: all 0.4s ease-out;
-    transform: translateX(-100vw);
+//default right
+
+.ToastElementRight{
+
+    &-Element{
+        @include defaultToastElementRight();
+    }
+
+    &-info {
+        @include defaultToastElementRight();
+        background-color: $primaryInfoColor;
+        color: white
+    }
+
+    &-success {
+        @include defaultToastElementRight();
+        background-color: $primarySuccessColor;
+        color: white;
+    }
+
+    &-dark {
+        @include defaultToastElementRight();
+        background-color: $darkColor;
+        color: white;
+    }
+}
+
+.slideIn {
+    transition: all 0.7s ease-out;
+    transform: translateX(0vw);
 }
