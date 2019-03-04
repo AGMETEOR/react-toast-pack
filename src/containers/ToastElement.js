@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import CloseToast from '../components/CloseToast';
 import toastFactory from '../utils/ToastFactory';
 import { AlignedRightContext } from './ToastPack';
+import Timer from '../utils/Timer';
 import '../../scss/main.scss';
 
 class ToastElement extends Component {
@@ -10,6 +11,7 @@ class ToastElement extends Component {
 
   constructor(props) {
     super(props);
+    this.toastElementRef = React.createRef();
     const { configuration } = props;
     const { autoCloseTiming, autoClose, styling } = configuration;
     this.autoCloseTiming = autoCloseTiming;
@@ -21,8 +23,14 @@ class ToastElement extends Component {
   }
 
   componentDidMount() {
-    setTimeout(() => this.slideIn(), 0);
-    setTimeout(() => this.autoClose(), this.autoCloseTiming);
+    new Timer(() => this.slideIn(), 0); // eslint-disable-line no-new
+    const autoCloseTimer = new Timer(() => this.autoClose(), this.autoCloseTiming);
+    this.toastElementRef.current.addEventListener('mouseover', () => autoCloseTimer.pause());
+    this.toastElementRef.current.addEventListener('mouseout', () => autoCloseTimer.resume());
+  }
+
+  componentWillUnmount() {
+    // TODO: Remove all events when unmounting this component
   }
 
   voluntaryClose = () => {
@@ -79,7 +87,12 @@ class ToastElement extends Component {
     return (
       <AlignedRightContext.Consumer>
         {(context) => (
-          <div className={`${context ? 'ToastElementRight' : 'ToastElement'}-${type || 'Element'} ${show && 'slideIn'}`} style={this.styling}>
+          <div
+          className={`${context ? 'ToastElementRight' : 'ToastElement'}-${type || 'Element'} ${show && 'slideIn'}`} style={this.styling}
+          ref={this.toastElementRef}
+          onMouseOver={this.detectMouseOver}
+          onFocus={() => {}}
+          >
             <div>
               {children}
             </div>
