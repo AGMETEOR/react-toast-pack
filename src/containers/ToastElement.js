@@ -4,6 +4,7 @@ import CloseToast from '../components/CloseToast';
 import toastFactory from '../utils/ToastFactory';
 import { AlignedRightContext } from './ToastPack';
 import Timer from '../utils/Timer';
+import noop from '../utils/noop';
 import '../../scss/main.scss';
 
 class ToastElement extends Component {
@@ -13,9 +14,17 @@ class ToastElement extends Component {
     super(props);
     this.toastElementRef = React.createRef();
     const { configuration } = props;
-    const { autoCloseTiming, autoClose, styling } = configuration;
+    const {
+      autoCloseTiming,
+      autoClose,
+      styling,
+      showCloseButton,
+      className,
+    } = configuration;
     this.autoCloseTiming = autoCloseTiming;
     this.styling = styling;
+    this.showCloseButton = showCloseButton;
+    this.className = className;
     this.state = {
       autoClose,
       show: false,
@@ -82,21 +91,19 @@ class ToastElement extends Component {
 
 
   render() {
-    const { type, children } = this.props;
+    const { type, children, custom } = this.props;
     const { show } = this.state;
     return (
       <AlignedRightContext.Consumer>
         {(context) => (
           <div
-          className={`${context ? 'ToastElementRight' : 'ToastElement'}-${type || 'Element'} ${show && 'slideIn'}`} style={this.styling}
+          className={`${context ? 'ToastElementRight' : 'ToastElement'}-${type || 'Element'} ${custom && 'custom'} ${show && 'slideIn'} ${this.className}`} style={this.styling}
           ref={this.toastElementRef}
           onMouseOver={this.detectMouseOver}
-          onFocus={() => {}}
+          onFocus={noop}
           >
-            <div>
-              {children}
-            </div>
-            <CloseToast clickFunction={this.voluntaryClose} />
+            {children}
+            {this.showCloseButton && <CloseToast clickFunction={this.voluntaryClose} />}
           </div>
         )}
       </AlignedRightContext.Consumer>
@@ -109,11 +116,13 @@ ToastElement.propTypes = {
   id: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
   configuration: PropTypes.object,
+  custom: PropTypes.bool,
 };
 
 ToastElement.defaultProps = {
   type: null,
   configuration: {},
+  custom: false,
 };
 
 export default ToastElement;
