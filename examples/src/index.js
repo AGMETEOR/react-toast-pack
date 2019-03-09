@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { ToastPack, toast } from '../../src';
+import Custom from './Custom';
+import './custom.scss';
 
 
 class App extends Component {
   componentDidMount() {
-    toast('dark', 'This is dark themed toast.', { autoClose: true, styling: { backgroundColor: 'yellow', color: 'black' } });
+    toast('dark', 'This is dark themed toast.', { autoClose: true, styling: { color: 'black' }, className: 'customer' });
     toast('info', 'This is information themed toast.');
-    toast('success', 'This is success themed toast.', { autoCloseTiming: 2000, autoClose: true });
+    toast('success', 'This is success themed toast.', { autoCloseTiming: 2000, autoClose: true, showCloseButton: false });
     toast(null, 'This is default themed toast.', { autoCloseTiming: 5000 });
+    toast(null, '', { autoCloseTiming: 5000, autoClose: false }, <Custom />);
   }
 
   render() {

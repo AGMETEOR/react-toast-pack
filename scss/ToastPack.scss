@@ -1,8 +1,10 @@
 @mixin defaultToastPack {
     position: absolute;
     min-width: 20%;
+    max-width: 20%;
     z-index: 999;
     top: 10px;
+    // font-size:1.2vw;
 }
 .ToastPack {
 
