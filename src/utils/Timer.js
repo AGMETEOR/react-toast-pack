@@ -1,15 +1,14 @@
-/* eslint-disable func-names */
 function Timer(callback, delay) {
   let timerId;
   let start;
   let remaining = delay;
 
-  this.pause = function () {
+  this.pause = () => {
     window.clearTimeout(timerId);
     remaining -= new Date() - start;
   };
 
-  this.resume = function () {
+  this.resume = () => {
     start = new Date();
     window.clearTimeout(timerId);
     timerId = window.setTimeout(callback, remaining);

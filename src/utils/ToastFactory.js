@@ -3,10 +3,21 @@ import uuid from 'uuid';
 import ToastElement from '../containers/ToastElement';
 import { ontoast, onremovetoast } from './types';
 
+
 const addToastEvent = new Event(ontoast);
 const removeToastEvent = new Event(onremovetoast);
 
-// TODO: Specify better defaults
+/**
+ * Given a component that component is rendered in Toast
+ * Element otherwise a simple message is rendered.
+ *
+ * @param {string} id
+ * @param {string} type
+ * @param {string} message
+ * @param {object} config
+ * @param {ReactElement} component
+ */
+
 const createToastItem = (id, type, message, config, component) => {
   if (component !== undefined) {
     return {
