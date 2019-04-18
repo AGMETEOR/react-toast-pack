@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import toastFactory from '../utils/ToastFactory';
 import { ontoast, onremovetoast } from '../utils/types';
+// import EventEmitter from '../utils/EventEmitter';
 
 export const AlignedRightContext = React.createContext(false);
 
@@ -11,8 +12,8 @@ class ToastPack extends Component {
     window.addEventListener(onremovetoast, () => this.forceUpdate());
   }
 
-  updateToastStack = () => {
-    this.forceUpdate();
+  createToastElement = () => {
+
   }
 
   render() {
